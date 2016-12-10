@@ -35,6 +35,9 @@ public class PeopleActionDecider : MonoBehaviour
     private List<Task> TaskList;
 
 
+    public GameObject idealSteeringPointer;
+    public GameObject idealThrottleLevel;
+
 
     public void ThrottleUp()
     {
@@ -59,6 +62,8 @@ public class PeopleActionDecider : MonoBehaviour
         if (steerAngleIdeal <= 44.00f)
             steerAngleIdeal += 1.00f;
 
+        idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
+
         if (TaskList.Contains(Task.Steer))
             TaskList.Add(Task.Steer);
     }
@@ -67,6 +72,8 @@ public class PeopleActionDecider : MonoBehaviour
     {
         if (steerAngleIdeal >= -44.00f)
             steerAngleIdeal -= 1.00f;
+
+        idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 
         if (TaskList.Contains(Task.Steer))
             TaskList.Add(Task.Steer);
