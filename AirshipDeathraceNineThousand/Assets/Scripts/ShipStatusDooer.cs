@@ -75,10 +75,20 @@ public class ShipStatusDooer : MonoBehaviour
     }
 
 	public void doPedalling(float workLevel){
-		currentThrottle += workLevel * THROTTLE_AMOUNT;
+		currentThrottle += workLevel;
 	}
 
+	public void doSteering(float workLevel, float targetAngle){
+		float move = (targetAngle - currentSteeringAngle);
+		move = Mathf.Sign(move) * Mathf.Min(workLevel * 45.0f/2.0f, Mathf.Abs(move));
+		currentSteeringAngle += move;
+	}
+		
 	public float getCurrentThrottle(){
 		return currentThrottle;
+	}
+
+	public float getCurrentAngle(){
+		return currentSteeringAngle;
 	}
 }

@@ -75,7 +75,6 @@ public class PeopleActionDecider : MonoBehaviour
 		AddJob (Task.Throttle);
     }
 
-
 	public float GetIdealThrottle(){
 		return throttleIdeal;
 	}
@@ -98,6 +97,10 @@ public class PeopleActionDecider : MonoBehaviour
         idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 
 		AddJob (Task.Steer);
+	}
+
+	public float getIdealAngle(){
+		return steerAngleIdeal;
 	}
 
     public void GoHooking()

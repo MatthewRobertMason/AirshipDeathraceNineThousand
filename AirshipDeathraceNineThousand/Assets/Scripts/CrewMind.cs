@@ -7,6 +7,7 @@ public class CrewMind : MonoBehaviour {
 	public PeopleActionDecider.Task currentTask = PeopleActionDecider.Task.Idle;
 	public float waitTime = 0;
 	public float speed = 1;
+	public float strength = 0.08f;
 
 	public GameObject peopleActionDecider;
 	public GameObject locationIdle, locationControls, locationPedals, locationUpGasser, locationHook, locationCenter;
@@ -76,7 +77,7 @@ public class CrewMind : MonoBehaviour {
 				workStarted = true;
 			} 
 
-			ship.doPedalling (delta);
+			ship.doPedalling (delta * strength);
 
 			if (ship.getCurrentThrottle() >= decider.GetIdealThrottle()) {
 				animator.SetTrigger ("crewWalk");
@@ -85,11 +86,46 @@ public class CrewMind : MonoBehaviour {
 
 			return true;
 
+		case PeopleActionDecider.Task.Steer:
+
+			ship.doSteering (delta * strength, decider.getIdealAngle ());
+
+			if (Mathf.Abs (ship.getCurrentAngle () - decider.getIdealAngle ()) < 0.1) {
+				return false;
+			}
+
+			return true;
+
+		case PeopleActionDecider.Task.Hook:
+
+			if (!workStarted) {
+				ship.toggleHook ();
+				workStarted = true;
+				waitTime = 5;
+				return true;
+			}
+
+			ship.toggleHook ();
+			return false;
+
+		case PeopleActionDecider.Task.Stoke:
+			if (!workStarted) {
+				workStarted = true;
+				waitTime = 2;
+				return true;
+			}
+
+			ship.stokeFire ();
+			pathPoints.Enqueue (locationCenter.transform.position);
+			return false;
+
 		}
 		return true;
 	}
 
 	void StartAction(){
+		workStarted = false;
+
 		switch (currentTask) {
 		case PeopleActionDecider.Task.Idle:
 			pathPoints.Enqueue (locationIdle.transform.position);
@@ -99,8 +135,19 @@ public class CrewMind : MonoBehaviour {
 
 		case PeopleActionDecider.Task.Throttle:
 			pathPoints.Enqueue (locationPedals.transform.position);
-			waitTime = 0.5f;
-			workStarted = false;
+			waitTime = 0.3f;
+			break;
+
+		case PeopleActionDecider.Task.Steer:
+			pathPoints.Enqueue (locationControls.transform.position);
+			break;
+
+		case PeopleActionDecider.Task.Stoke:
+			pathPoints.Enqueue (locationUpGasser.transform.position);
+			break;
+
+		case PeopleActionDecider.Task.Hook:
+			pathPoints.Enqueue (locationHook.transform.position);
 			break;
 		}
 	}
