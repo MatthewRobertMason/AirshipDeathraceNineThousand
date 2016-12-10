@@ -40,17 +40,15 @@ public class PeopleActionDecider : MonoBehaviour
     public GameObject idealThrottleLevel;
 
     public GameObject shipStatusDooer;
-
-<<<<<<< HEAD
+    
     public GameObject hookLever;    
-=======
+
 	// Use this for initialization
 	void Start ()
 	{
 		TaskList = new Queue<Task>();
 		ActiveTasks = new HashSet<Task> ();
 	}
->>>>>>> 0fc686ce7c2610dd37ec93d6e6de316481c22c63
 
     public void ThrottleUp()
     {
@@ -64,19 +62,17 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void ThrottleDown()
     {
-<<<<<<< HEAD
         if (throttleIdeal > 0.025f)
             throttleIdeal -= 0.025f;
         
         idealThrottleLevel.transform.localPosition = new Vector3(0.0f, (throttleIdeal - 0.5f), 0.0f);
 
-        if (TaskList.Contains(Task.Throttle))
-            TaskList.Add(Task.Throttle);
-=======
+        //if (TaskList.Contains(Task.Throttle))
+        //    TaskList.Add(Task.Throttle);
+
         if (throttleIdeal >= 0.05f)
             throttleIdeal -= 0.05f;
 		AddJob (Task.Throttle);
->>>>>>> 0fc686ce7c2610dd37ec93d6e6de316481c22c63
     }
 
     public void SteerUp()
