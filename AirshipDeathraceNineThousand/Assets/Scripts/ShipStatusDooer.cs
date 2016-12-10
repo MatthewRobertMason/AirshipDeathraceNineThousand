@@ -34,6 +34,9 @@ public class ShipStatusDooer : MonoBehaviour
     [Range(0.0f, 50.0f)]
     private float currentFuelLevel = 10.0f;
 
+	[Range(0.0f, 500.0f)]
+	private float stashedFuelLevel = 50.0f;
+
     // Use this for initialization
     void Start ()
     {
@@ -68,6 +71,8 @@ public class ShipStatusDooer : MonoBehaviour
 
     public void stokeFire()
     {
-        currentFuelLevel += 0.2f;
+		float delta = Mathf.Min(0.2f, stashedFuelLevel);
+		stashedFuelLevel -= delta;
+        currentFuelLevel += delta;
     }
 }
