@@ -47,7 +47,7 @@ public class ShipStatusDooer : MonoBehaviour
 	void Update ()
     {
         if (currentThrottle <= 0.0f)
-            currentThrottle += 0.5f;
+            currentThrottle = 0.0f;
 
         if (currentFuelLevel <= 0.0f)
             currentFuelLevel += 10.0f;
@@ -73,4 +73,12 @@ public class ShipStatusDooer : MonoBehaviour
 		stashedFuelLevel -= delta;
         currentFuelLevel += delta;
     }
+
+	public void doPedalling(float workLevel){
+		currentThrottle += workLevel * THROTTLE_AMOUNT;
+	}
+
+	public float getCurrentThrottle(){
+		return currentThrottle;
+	}
 }

@@ -75,6 +75,11 @@ public class PeopleActionDecider : MonoBehaviour
 		AddJob (Task.Throttle);
     }
 
+
+	public float GetIdealThrottle(){
+		return throttleIdeal;
+	}
+
     public void SteerUp()
     {
         if (steerAngleIdeal <= 44.00f)

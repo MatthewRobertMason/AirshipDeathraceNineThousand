@@ -10,15 +10,22 @@ public class CrewMind : MonoBehaviour {
 
 	public GameObject peopleActionDecider;
 	public GameObject locationIdle, locationControls, locationPedals, locationUpGasser, locationHook, locationCenter;
+	public GameObject shipStatusDooer;
 
 	public Queue<Vector3> pathPoints;
 
+	private ShipStatusDooer ship;
 	private PeopleActionDecider decider;
+	private Animator animator;
+
+	private bool workStarted = false;
 
 	// Use this for initialization
 	void Start () {
 		pathPoints = new Queue<Vector3> ();
 		decider = peopleActionDecider.GetComponent<PeopleActionDecider>();
+		ship = shipStatusDooer.GetComponent<ShipStatusDooer> ();
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -42,7 +49,7 @@ public class CrewMind : MonoBehaviour {
 
 		// Action is done
 		decider.ReleaseTask(currentTask);
-	//	currentTask = decider.GetJob ();
+		currentTask = decider.GetJob ();
 		StartAction();
 	}
 
@@ -63,6 +70,21 @@ public class CrewMind : MonoBehaviour {
 		case PeopleActionDecider.Task.Idle:
 			return false;
 
+		case PeopleActionDecider.Task.Throttle:
+			if (!workStarted) {
+				animator.SetTrigger ("crewPedal");
+				workStarted = true;
+			} 
+
+			ship.doPedalling (delta);
+
+			if (ship.getCurrentThrottle() >= decider.GetIdealThrottle()) {
+				animator.SetTrigger ("crewWalk");
+				return false;
+			}
+
+			return true;
+
 		}
 		return true;
 	}
@@ -73,6 +95,12 @@ public class CrewMind : MonoBehaviour {
 			pathPoints.Enqueue (locationIdle.transform.position);
 			pathPoints.Enqueue (locationCenter.transform.position);
 			waitTime = 5;
+			break;
+
+		case PeopleActionDecider.Task.Throttle:
+			pathPoints.Enqueue (locationPedals.transform.position);
+			waitTime = 0.5f;
+			workStarted = false;
 			break;
 		}
 	}
