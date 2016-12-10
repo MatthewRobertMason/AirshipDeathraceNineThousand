@@ -32,7 +32,8 @@ public class PeopleActionDecider : MonoBehaviour
     [SerializeField]
     private bool stoking;
 
-    private List<Task> TaskList;
+	private Queue<Task> TaskList;
+	private HashSet<Task> ActiveTasks;
 
 
     public GameObject idealSteeringPointer;
@@ -40,7 +41,16 @@ public class PeopleActionDecider : MonoBehaviour
 
     public GameObject shipStatusDooer;
 
+<<<<<<< HEAD
     public GameObject hookLever;    
+=======
+	// Use this for initialization
+	void Start ()
+	{
+		TaskList = new Queue<Task>();
+		ActiveTasks = new HashSet<Task> ();
+	}
+>>>>>>> 0fc686ce7c2610dd37ec93d6e6de316481c22c63
 
     public void ThrottleUp()
     {
@@ -49,12 +59,12 @@ public class PeopleActionDecider : MonoBehaviour
         
         idealThrottleLevel.transform.localPosition = new Vector3(0.0f, (throttleIdeal-0.5f), 0.0f);
 
-        if (TaskList.Contains(Task.Throttle))
-            TaskList.Add(Task.Throttle);
+		AddJob (Task.Throttle);
     }
 
     public void ThrottleDown()
     {
+<<<<<<< HEAD
         if (throttleIdeal > 0.025f)
             throttleIdeal -= 0.025f;
         
@@ -62,6 +72,11 @@ public class PeopleActionDecider : MonoBehaviour
 
         if (TaskList.Contains(Task.Throttle))
             TaskList.Add(Task.Throttle);
+=======
+        if (throttleIdeal >= 0.05f)
+            throttleIdeal -= 0.05f;
+		AddJob (Task.Throttle);
+>>>>>>> 0fc686ce7c2610dd37ec93d6e6de316481c22c63
     }
 
     public void SteerUp()
@@ -71,9 +86,8 @@ public class PeopleActionDecider : MonoBehaviour
 
         idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 
-        if (TaskList.Contains(Task.Steer))
-            TaskList.Add(Task.Steer);
-    }
+		AddJob (Task.Steer);
+	}
 
     public void SteerDown()
     {
@@ -82,31 +96,41 @@ public class PeopleActionDecider : MonoBehaviour
 
         idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 
-        if (TaskList.Contains(Task.Steer))
-            TaskList.Add(Task.Steer);
-    }
+		AddJob (Task.Steer);
+	}
 
     public void GoHooking()
     {
         hooking = !hooking;
-        if (TaskList.Contains(Task.Hook))
-            TaskList.Add(Task.Hook);
-    }
+		AddJob (Task.Hook);
+	}
 
     public void StokeYourself()
     {
         stoking = !stoking;
-        if (TaskList.Contains(Task.Stoke))
-            TaskList.Add(Task.Stoke);
+		AddJob (Task.Stoke);
     }
 
-    
-	// Use this for initialization
-	void Start ()
-    {
-        TaskList = new List<Task>();
-    }
-    
+	protected void AddJob(Task task){
+		if (!TaskList.Contains(task) && !ActiveTasks.Contains(task))
+			TaskList.Enqueue(task);
+	}
+
+	// Called by the crew members to get a job.
+	public Task GetJob()
+	{
+		if (TaskList.Count > 0) {
+			Task selectedTask = TaskList.Dequeue ();
+			ActiveTasks.Add (selectedTask);
+			return selectedTask;
+		}
+		return Task.Idle;
+	}
+
+	public void ReleaseTask(Task task){
+		ActiveTasks.Remove (task);
+	}
+
     /*
 	// Update is called once per frame
 	void Update ()
