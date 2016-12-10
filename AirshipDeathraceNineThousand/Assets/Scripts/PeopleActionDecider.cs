@@ -38,6 +38,7 @@ public class PeopleActionDecider : MonoBehaviour
     public GameObject idealSteeringPointer;
     public GameObject idealThrottleLevel;
 
+    public GameObject shipStatusDooer;
 
     public void ThrottleUp()
     {
