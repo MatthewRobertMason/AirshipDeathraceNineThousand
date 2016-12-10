@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Airship.unity
-  isLoaded: 1
-  isActive: 1
