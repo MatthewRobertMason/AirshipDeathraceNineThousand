@@ -57,8 +57,6 @@ public class ShipStatusDooer : MonoBehaviour
 
         // Tick throttle usage
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
-
-
     }
 
     public void toggleHook()
