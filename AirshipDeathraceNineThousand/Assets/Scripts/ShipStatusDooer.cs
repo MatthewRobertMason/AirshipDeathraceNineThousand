@@ -60,6 +60,8 @@ public class ShipStatusDooer : MonoBehaviour
 
         // Tick throttle usage
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
+
+        steeringPointerActual.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentSteeringAngle);
     }
 
     public void toggleHook()
