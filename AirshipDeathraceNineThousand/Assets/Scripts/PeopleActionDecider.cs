@@ -124,6 +124,11 @@ public class PeopleActionDecider : MonoBehaviour
 
 	public void ReleaseTask(Task task){
 		ActiveTasks.Remove (task);
+
+        switch (task)
+        {
+            
+        }
 	}
 
     /*
