@@ -390,7 +390,7 @@ MonoBehaviour:
   throttleLevelActual: {fileID: 1801763478}
   fuelLevel: {fileID: 1103738379}
   chain: {fileID: 562783057}
-  chainQuad: {fileID: 366161464}
+  chainQuad: {fileID: 0}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
   FUEL_USAGE: 0.05
@@ -633,12 +633,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 366161464}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.577, y: -0.614, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.769, y: -1.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 562783058}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381350883
 GameObject:
@@ -903,6 +903,34 @@ Transform:
   m_Father: {fileID: 580325057}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &503435042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 503435043}
+  m_Layer: 0
+  m_Name: TippyTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503435043
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503435042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547515631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,8 +1028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollspeed: 0.0005
   shipStatusDooer: {fileID: 164423849}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
+  top: {fileID: 503435042}
+  bottom: {fileID: 896789454}
 --- !u!1 &562783057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,7 +1056,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2119136884}
-  - {fileID: 366161468}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1235,6 +1262,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.002}
   m_SizeDelta: {x: 1209, y: 458}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &896789454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 896789455}
+  m_Layer: 0
+  m_Name: LowBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896789455
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896789454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &981039644
 Prefab:
   m_ObjectHideFlags: 0
@@ -2508,6 +2563,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throttleIdeal: 0.5
   steerAngleIdeal: 0
+  hooking: 0
+  stoking: 0
   idealSteeringPointer: {fileID: 452326719}
   idealThrottleLevel: {fileID: 1489257063}
   shipStatusDooer: {fileID: 164423849}
@@ -3133,7 +3190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
         type: 2}
