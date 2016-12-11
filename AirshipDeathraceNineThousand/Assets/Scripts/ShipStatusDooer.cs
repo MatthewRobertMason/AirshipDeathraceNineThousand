@@ -71,7 +71,7 @@ public class ShipStatusDooer : MonoBehaviour
         steeringPointerActual.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentSteeringAngle);
 
 		altitude += getVerticalSpeed() * Time.deltaTime;
-		altitude = Mathf.Clamp(altitude, 0, 100);
+		altitude = Mathf.Clamp(altitude, 0, MaxAltitude());
 		if (altitude < 1) {
 			Debug.Log("CRASH");
 		}
@@ -117,5 +117,9 @@ public class ShipStatusDooer : MonoBehaviour
 
 	public float GetAltitude(){
 		return altitude;
+	}
+
+	public static float MaxAltitude(){
+		return 100.0f;
 	}
 }
