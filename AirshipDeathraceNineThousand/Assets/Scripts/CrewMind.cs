@@ -59,9 +59,20 @@ public class CrewMind : MonoBehaviour {
 		if (pathPoints.Count > 0) {
 			animator.SetTrigger ("crewWalk");
 			transform.position = Vector3.MoveTowards (transform.position, pathPoints.Peek (), delta * speed);
+			if (transform.position.x > pathPoints.Peek ().x) {
+				Vector3 scale = transform.localScale;
+				scale.x = -Mathf.Abs(scale.x);
+				transform.localScale = scale;
+			}
+
 			if (this.transform.position == pathPoints.Peek ()) {
 				animator.SetTrigger ("crewStop");
 				animator.ResetTrigger ("crewWalk");
+
+				Vector3 scale = transform.localScale;
+				scale.x = Mathf.Abs(scale.x);
+				transform.localScale = scale;
+
 				pathPoints.Dequeue ();
 			}
 			return true;
