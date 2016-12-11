@@ -9,6 +9,7 @@ public class PrizeMind : MonoBehaviour {
 	protected ShipStatusDooer ship;
 	public float speedMultiplier = 1f;
 	public float altitude = 1.0f;
+	public bool hooked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,15 +23,17 @@ public class PrizeMind : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 pos = transform.position;
-		pos += new Vector3(-ship.getCurrentThrottle() * speedMultiplier, 0, 0);
-		pos.y = getViewHeight();
+		if (!hooked) {
+			Vector3 pos = transform.position;
+			pos += new Vector3 (-ship.getCurrentThrottle () * speedMultiplier, 0, 0);
+			pos.y = getViewHeight ();
 
-		transform.position = pos;
+			transform.position = pos;
 
 
-		if (!this.GetComponent<SpriteRenderer> ().isVisible) {
-			transform.position = new Vector3(sceneCamera.aspect * 2, getViewHeight(), transform.position.z);
+			if (!this.GetComponent<SpriteRenderer> ().isVisible) {
+				transform.position = new Vector3 (sceneCamera.aspect * 2, getViewHeight (), transform.position.z);
+			}
 		}
 	}
 
