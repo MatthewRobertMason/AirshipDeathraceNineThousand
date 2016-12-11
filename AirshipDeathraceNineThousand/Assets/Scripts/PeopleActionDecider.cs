@@ -16,16 +16,9 @@ public class PeopleActionDecider : MonoBehaviour
     [Range(0, 1)]
     [SerializeField]
     private float throttleIdeal = 0.5f;
-    [Range(0, 1)]
-    [SerializeField]
-    private float throttleCurrent = 0.5f;
-
     [Range(-45, 45)]
     [SerializeField]
     private float steerAngleIdeal = 0.0f;
-    [Range(-45, 45)]
-    [SerializeField]
-    private float steerAngleCurrent = 0.0f;
 
     [SerializeField]
     private bool hooking;
@@ -34,14 +27,12 @@ public class PeopleActionDecider : MonoBehaviour
 
 	private Queue<Task> TaskList;
 	private HashSet<Task> ActiveTasks;
-
-
+    
     public GameObject idealSteeringPointer;
     public GameObject idealThrottleLevel;
 
     public GameObject shipStatusDooer;
     
-    public GameObject hookLever;    
 
 	// Use this for initialization
 	void Start ()
