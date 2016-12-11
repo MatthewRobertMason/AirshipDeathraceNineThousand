@@ -19,12 +19,7 @@ public class PeopleActionDecider : MonoBehaviour
     [Range(-45, 45)]
     [SerializeField]
     private float steerAngleIdeal = 0.0f;
-
-    [SerializeField]
-    private bool hooking;
-    [SerializeField]
-    private bool stoking;
-
+    
 	private Queue<Task> TaskList;
 	private HashSet<Task> ActiveTasks;
     
@@ -96,13 +91,11 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void GoHooking()
     {
-        hooking = !hooking;
 		AddJob (Task.Hook);
 	}
 
     public void StokeYourself()
     {
-        stoking = !stoking;
 		AddJob (Task.Stoke);
     }
 
