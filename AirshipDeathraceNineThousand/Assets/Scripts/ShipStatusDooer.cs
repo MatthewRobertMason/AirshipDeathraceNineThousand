@@ -11,7 +11,18 @@ public class ShipStatusDooer : MonoBehaviour
     public GameObject steeringPointerActual;
     public GameObject throttleLevelActual;
     public GameObject fuelLevel;
+    public GameObject togWoggler;
 
+    [Header("Hook Stuff")]
+    public GameObject Hook;
+    private Vector3 hookInitial;
+    [SerializeField]
+    private GameObject hookDropPosition;
+    [SerializeField]
+    [Range(0.0f, 5.0f)]
+    private float hookDropSpeed = 1.0f;
+
+    [Header("Chain Stuff")]
     public GameObject chain;
     public GameObject chainQuad;
     public GameObject startVertex;
@@ -40,6 +51,8 @@ public class ShipStatusDooer : MonoBehaviour
     private bool currentlyStoking = false;
     [SerializeField]
     private bool currentlyHooking = false;
+    [SerializeField]
+    private bool hookDeployed = false;
 
     [Range(0.0f, 50.0f)]
     private float currentFuelLevel = 10.0f;
@@ -53,7 +66,7 @@ public class ShipStatusDooer : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
+        hookInitial = Hook.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -78,8 +91,7 @@ public class ShipStatusDooer : MonoBehaviour
 
 
 
-        Vector2 startVec = new Vector2(startVertex.transform.position.x, startVertex.transform.position.y);
-        Vector2 endVec = new Vector2(endVertex.transform.position.x, endVertex.transform.position.y);
+        
 
         altitude += getVerticalSpeed() * Time.deltaTime;
 		altitude = Mathf.Clamp(altitude, 0, 100);
@@ -87,29 +99,53 @@ public class ShipStatusDooer : MonoBehaviour
 			Debug.Log("CRASH");
 		}
 
-        chain.transform.position = startVertex.transform.position;
-        //float angle = Mathf.Acos(Vector3.Dot(startVertex.transform.position, endVertex.transform.position));
-        float angle = Vector2.Angle(Vector2.right, endVec - startVec) * ((endVec.y < startVec.y) ? -1.0f : 1.0f);
 
+        // ================== Chain Stuff
+        Vector2 startVec = new Vector2(startVertex.transform.position.x, startVertex.transform.position.y);
+        Vector2 endVec = new Vector2(endVertex.transform.position.x, endVertex.transform.position.y);
+
+        chain.transform.position = startVertex.transform.position;
+
+        float angle = Vector2.Angle(Vector2.right, endVec - startVec) * ((endVec.y < startVec.y) ? -1.0f : 1.0f);
         chain.transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
         chain.transform.Rotate(1.0f, 1.0f, 90.0f);
 
-
         float dist = Vector2.Distance(startVec, endVec);
         Vector2 offset = new Vector2(1.0f, dist * 6.25f);
-
         chainQuad.GetComponent<Renderer>().material.mainTextureScale = offset;
-        chain.transform.localScale = new Vector3(1.0f, dist, 1.0f);
+        chain.transform.localScale = new Vector3(1.0f, dist, 1.0f); 
+
+        // ================== Hooking Stuff
+        float hookMoveDist = Time.deltaTime * hookDropSpeed;
+
+        if (currentlyHooking && !hookDeployed)
+            Hook.transform.position = Vector3.MoveTowards(Hook.transform.position, hookDropPosition.transform.position, hookMoveDist);
+        
+        if (Hook.transform.position == hookDropPosition.transform.position)
+            hookDeployed = true;
+
+        if (!currentlyHooking)
+        {
+            hookDeployed = false;
+            Hook.transform.position = Vector3.MoveTowards(Hook.transform.position, hookInitial, hookMoveDist/2);
+        }
+        if (Hook.transform.position == hookInitial)
+        {
+            currentlyHooking = false;
+        }
+
+        togWoggler.transform.localScale.Set((currentlyHooking) ? -1.0f : 1.0f, 1.0f, 1.0f);
     }
 
     public void toggleHook()
     {
         currentlyHooking = !currentlyHooking;
+        //togWoggler.transform.localScale.Set((currentlyHooking) ? -1.0f : 1.0f, 1.0f, 1.0f);
     }
 
     public void stokeFire()
     {
-		float delta = Mathf.Min(0.2f, stashedFuelLevel);
+		float delta = Mathf.Min(STOKING_AMOUNT, stashedFuelLevel);
 		stashedFuelLevel -= delta;
         currentFuelLevel += delta;
     }
