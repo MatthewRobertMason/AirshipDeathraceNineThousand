@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ShipStatusDooer : MonoBehaviour
 {
+    [Header("People Action Decider")]
     public GameObject PeopleActionDecider;
+
+    [Header("Ship Part Objects")]
     public GameObject steeringPointerActual;
     public GameObject throttleLevelActual;
     public GameObject fuelLevel;
 
     public GameObject chain;
+    public GameObject chainQuad;
     public GameObject startVertex;
     public GameObject endVertex;
 
+    [Header("Constants")]
     [SerializeField]
     private float FUEL_USAGE = 0.05f;
     [SerializeField]
@@ -22,7 +27,8 @@ public class ShipStatusDooer : MonoBehaviour
     private float STOKING_AMOUNT = 0.5f;
     [SerializeField]
     private float THROTTLE_AMOUNT = 0.05f;
-    
+
+    [Header("Ship Properties Info")]
     [Range(0, 1)]
     [SerializeField]
     private float currentThrottle = 0.0f;
@@ -70,15 +76,30 @@ public class ShipStatusDooer : MonoBehaviour
 
         steeringPointerActual.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentSteeringAngle);
 
-		altitude += getVerticalSpeed() * Time.deltaTime;
+
+
+        Vector2 startVec = new Vector2(startVertex.transform.position.x, startVertex.transform.position.y);
+        Vector2 endVec = new Vector2(endVertex.transform.position.x, endVertex.transform.position.y);
+
+        altitude += getVerticalSpeed() * Time.deltaTime;
 		altitude = Mathf.Clamp(altitude, 0, 100);
 		if (altitude < 1) {
 			Debug.Log("CRASH");
 		}
 
         chain.transform.position = startVertex.transform.position;
-        //chain.transform.LookAt(endVertex.transform.position);
-        //chain.transform.localScale = new Vector3(1.0f, 12.0f);//Vector3.Distance(startVertex.transform.position, endVertex.transform.position));
+        //float angle = Mathf.Acos(Vector3.Dot(startVertex.transform.position, endVertex.transform.position));
+        float angle = Vector2.Angle(Vector2.right, endVec - startVec) * ((endVec.y < startVec.y) ? -1.0f : 1.0f);
+
+        chain.transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
+        chain.transform.Rotate(1.0f, 1.0f, 90.0f);
+
+
+        float dist = Vector2.Distance(startVec, endVec);
+        Vector2 offset = new Vector2(1.0f, dist * 6.25f);
+
+        chainQuad.GetComponent<Renderer>().material.mainTextureScale = offset;
+        chain.transform.localScale = new Vector3(1.0f, dist, 1.0f);
     }
 
     public void toggleHook()
