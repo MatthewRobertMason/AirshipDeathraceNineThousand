@@ -46,15 +46,15 @@ public class ShipStatusDooer : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (currentThrottle <= 0.0f)
-            currentThrottle = 0.0f;
-
-        if (currentFuelLevel <= 0.0f)
-            currentFuelLevel += 10.0f;
-
         currentThrottle -= THROTTLE_USAGE;
         currentFuelLevel -= FUEL_USAGE;
-        
+
+		if (currentThrottle <= 0.0f)
+			currentThrottle = 0.0f;
+
+		if (currentFuelLevel <= 0.0f)
+			currentFuelLevel += 10.0f;
+		
         // Tick fuel usage
         fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / 50.0f), 1.0f);
 
