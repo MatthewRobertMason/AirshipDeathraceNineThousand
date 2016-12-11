@@ -9,16 +9,21 @@ public class BackgroundController : MonoBehaviour {
     [SerializeField]
     private float scrollspeed;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject shipStatusDooer;
+
+    private Vector2 offset;
+
+    // Use this for initialization
+    void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        float y = Mathf.Repeat(Time.time * scrollspeed, 1);
+        float y = scrollspeed * shipStatusDooer.GetComponent<ShipStatusDooer>().getCurrentThrottle();
 
-        Vector2 offset = new Vector2(y, 0);
+        offset += new Vector2(y, 0);
 
         this.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
 
