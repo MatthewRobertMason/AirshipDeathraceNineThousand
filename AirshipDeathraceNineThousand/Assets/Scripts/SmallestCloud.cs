@@ -5,7 +5,7 @@ using UnityEngine;
 public class SmallestCloud : MonoBehaviour {
 
 	public GameObject shipStatusDooer;
-	public Camera camera;
+	public Camera sceneCamera;
 	protected ShipStatusDooer ship;
 	public float speedMultiplier = 1f;
 
@@ -21,7 +21,7 @@ public class SmallestCloud : MonoBehaviour {
 		transform.position += move;
 
 		if (!this.GetComponent<SpriteRenderer> ().isVisible) {
-			transform.position = new Vector3(camera.aspect * 2, 0, transform.position.z);
+			transform.position = new Vector3(sceneCamera.aspect * 2, 0, transform.position.z);
 		}
 	}
 }
