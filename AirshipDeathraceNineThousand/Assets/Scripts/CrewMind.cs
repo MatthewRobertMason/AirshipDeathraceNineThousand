@@ -57,11 +57,16 @@ public class CrewMind : MonoBehaviour {
 	// Walk around, return if there is more walking to do
 	bool WalkTo(float delta){
 		if (pathPoints.Count > 0) {
+			animator.SetTrigger ("crewWalk");
 			transform.position = Vector3.MoveTowards (transform.position, pathPoints.Peek (), delta * speed);
-			if (this.transform.position == pathPoints.Peek ())
+			if (this.transform.position == pathPoints.Peek ()) {
+				animator.SetTrigger ("crewStop");
+				animator.ResetTrigger ("crewWalk");
 				pathPoints.Dequeue ();
+			}
 			return true;
 		}
+
 		return false;
 	}
 
@@ -80,17 +85,22 @@ public class CrewMind : MonoBehaviour {
 			ship.doPedalling (delta * strength);
 
 			if (ship.getCurrentThrottle() >= decider.GetIdealThrottle()) {
-				animator.SetTrigger ("crewWalk");
+				animator.SetTrigger ("crewStop");
 				return false;
 			}
 
 			return true;
 
 		case PeopleActionDecider.Task.Steer:
+			if (!workStarted) {
+				animator.SetTrigger ("crewSteer");
+				workStarted = true;
+			}
 
 			ship.doSteering (delta * strength, decider.getIdealAngle ());
 
 			if (Mathf.Abs (ship.getCurrentAngle () - decider.getIdealAngle ()) < 0.1) {
+				animator.SetTrigger ("crewStop");
 				return false;
 			}
 
