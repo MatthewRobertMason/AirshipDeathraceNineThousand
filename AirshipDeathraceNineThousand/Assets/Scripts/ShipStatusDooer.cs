@@ -95,6 +95,6 @@ public class ShipStatusDooer : MonoBehaviour
 	}
 
 	public float getVerticalSpeed(){
-		return Mathf.Sin(currentSteeringAngle * 3.14f/180f) * getCurrentThrottle();
+		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle() * 0.05f;
 	}
 }

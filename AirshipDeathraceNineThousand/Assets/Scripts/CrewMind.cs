@@ -153,6 +153,7 @@ public class CrewMind : MonoBehaviour {
 			break;
 
 		case PeopleActionDecider.Task.Stoke:
+			pathPoints.Enqueue (locationCenter.transform.position);
 			pathPoints.Enqueue (locationUpGasser.transform.position);
 			break;
 
