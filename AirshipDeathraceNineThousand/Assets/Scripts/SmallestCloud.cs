@@ -16,12 +16,12 @@ public class SmallestCloud : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 move = new Vector3(-ship.getCurrentThrottle() * speedMultiplier, 0, 0);
+		Vector3 move = new Vector3(-ship.getCurrentThrottle() * speedMultiplier, -ship.getVerticalSpeed(), 0);
 
 		transform.position += move;
 
 		if (!this.GetComponent<SpriteRenderer> ().isVisible) {
-			transform.position = new Vector3(camera.aspect * 2, transform.position.y, transform.position.z);
+			transform.position = new Vector3(camera.aspect * 2, 0, transform.position.z);
 		}
 	}
 }

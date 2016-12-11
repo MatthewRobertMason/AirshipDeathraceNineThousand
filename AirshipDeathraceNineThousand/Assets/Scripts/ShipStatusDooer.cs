@@ -91,4 +91,8 @@ public class ShipStatusDooer : MonoBehaviour
 	public float getCurrentAngle(){
 		return currentSteeringAngle;
 	}
+
+	public float getVerticalSpeed(){
+		return Mathf.Sin(currentSteeringAngle * 3.14f/180f) * getCurrentThrottle();
+	}
 }
