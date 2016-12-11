@@ -27,10 +27,38 @@ public class PeopleActionDecider : MonoBehaviour
     public GameObject idealThrottleLevel;
 
     public GameObject shipStatusDooer;
-    
 
-	// Use this for initialization
-	void Start ()
+    private bool steerUpButtonPushed;
+    private bool steerDownButtonPushed;
+    private bool throttleUpButtonPushed;
+    private bool throttleDownButtonPushed;
+
+    public void SteerUpButtonDown()
+    { steerUpButtonPushed = true; }
+
+    public void SteerUpButtonUp()
+    { steerUpButtonPushed = false; }
+
+    public void SteerDownButtonDown()
+    { steerDownButtonPushed = true; }
+
+    public void SteerDownButtonUp()
+    { steerDownButtonPushed = false; }
+
+    public void ThrottleUpButtonDown()
+    { throttleUpButtonPushed = true; }
+
+    public void ThrottleUpButtonUp()
+    { throttleUpButtonPushed = false; }
+
+    public void ThrottleDownButtonDown()
+    { throttleDownButtonPushed = true; }
+
+    public void ThrottleDownButtonUp()
+    { throttleDownButtonPushed = false; }
+
+    // Use this for initialization
+    void Start ()
 	{
 		TaskList = new Queue<Task>();
 		ActiveTasks = new HashSet<Task> ();
@@ -124,11 +152,35 @@ public class PeopleActionDecider : MonoBehaviour
         }
 	}
 
-    /*
+    
 	// Update is called once per frame
 	void Update ()
     {
-		This will require access to the ship manager (Dance commander?) to pull the current values from
-	}
-    */
+        /*
+        private bool steerUpButtonPushed;
+        private bool steerDownButtonPushed;
+        private bool throttleUpButtonPushed;
+        private bool throttleDownButtonPushed;
+        */
+
+        if (steerUpButtonPushed)
+        {
+            SteerUp();
+        }
+
+        if (steerDownButtonPushed)
+        {
+            SteerDown();
+        }
+
+        if (throttleUpButtonPushed)
+        {
+            ThrottleUp();
+        }
+
+        if (throttleDownButtonPushed)
+        {
+            ThrottleDown();
+        }
+    }
 }
