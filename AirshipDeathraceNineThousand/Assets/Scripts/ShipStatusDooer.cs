@@ -54,10 +54,12 @@ public class ShipStatusDooer : MonoBehaviour
     [SerializeField]
     private bool hookDeployed = false;
 
+    [SerializeField]
     [Range(0.0f, 50.0f)]
     private float currentFuelLevel = 10.0f;
 
-	[Range(0.0f, 500.0f)]
+    [SerializeField]
+    [Range(0.0f, 500.0f)]
 	private float stashedFuelLevel = 50.0f;
 
 

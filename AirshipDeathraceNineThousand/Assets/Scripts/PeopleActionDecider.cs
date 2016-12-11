@@ -27,10 +27,38 @@ public class PeopleActionDecider : MonoBehaviour
     public GameObject idealThrottleLevel;
 
     public GameObject shipStatusDooer;
-    
 
-	// Use this for initialization
-	void Start ()
+    private bool steerUpButtonPushed;
+    private bool steerDownButtonPushed;
+    private bool throttleUpButtonPushed;
+    private bool throttleDownButtonPushed;
+
+    public void SteerUpButtonDown()
+    { steerUpButtonPushed = true; }
+
+    public void SteerUpButtonUp()
+    { steerUpButtonPushed = false; }
+
+    public void SteerDownButtonDown()
+    { steerDownButtonPushed = true; }
+
+    public void SteerDownButtonUp()
+    { steerDownButtonPushed = false; }
+
+    public void ThrottleUpButtonDown()
+    { throttleUpButtonPushed = true; }
+
+    public void ThrottleUpButtonUp()
+    { throttleUpButtonPushed = false; }
+
+    public void ThrottleDownButtonDown()
+    { throttleDownButtonPushed = true; }
+
+    public void ThrottleDownButtonUp()
+    { throttleDownButtonPushed = false; }
+
+    // Use this for initialization
+    void Start ()
 	{
 		TaskList = new Queue<Task>();
 		ActiveTasks = new HashSet<Task> ();
@@ -41,7 +69,7 @@ public class PeopleActionDecider : MonoBehaviour
         if (throttleIdeal < 1.0f - 0.025f)
             throttleIdeal += 0.025f;
         
-        idealThrottleLevel.transform.localPosition = new Vector3(0.0f, (throttleIdeal-0.5f), 0.0f);
+        idealThrottleLevel.transform.localPosition = new Vector3(idealThrottleLevel.transform.localPosition.x, (throttleIdeal-0.5f), idealThrottleLevel.transform.localPosition.z);
 
 		AddJob (Task.Throttle);
     }
@@ -51,7 +79,7 @@ public class PeopleActionDecider : MonoBehaviour
         if (throttleIdeal > 0.025f)
             throttleIdeal -= 0.025f;
         
-        idealThrottleLevel.transform.localPosition = new Vector3(0.0f, (throttleIdeal - 0.5f), 0.0f);
+        idealThrottleLevel.transform.localPosition = new Vector3(idealThrottleLevel.transform.localPosition.x, (throttleIdeal - 0.5f), idealThrottleLevel.transform.localPosition.z);
 
         //if (TaskList.Contains(Task.Throttle))
         //    TaskList.Add(Task.Throttle);
@@ -124,11 +152,35 @@ public class PeopleActionDecider : MonoBehaviour
         }
 	}
 
-    /*
+    
 	// Update is called once per frame
 	void Update ()
     {
-		This will require access to the ship manager (Dance commander?) to pull the current values from
-	}
-    */
+        /*
+        private bool steerUpButtonPushed;
+        private bool steerDownButtonPushed;
+        private bool throttleUpButtonPushed;
+        private bool throttleDownButtonPushed;
+        */
+
+        if (steerUpButtonPushed)
+        {
+            SteerUp();
+        }
+
+        if (steerDownButtonPushed)
+        {
+            SteerDown();
+        }
+
+        if (throttleUpButtonPushed)
+        {
+            ThrottleUp();
+        }
+
+        if (throttleDownButtonPushed)
+        {
+            ThrottleDown();
+        }
+    }
 }
