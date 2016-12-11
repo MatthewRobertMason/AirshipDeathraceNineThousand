@@ -390,6 +390,7 @@ MonoBehaviour:
   throttleLevelActual: {fileID: 1801763478}
   fuelLevel: {fileID: 1103738379}
   chain: {fileID: 562783057}
+  chainQuad: {fileID: 366161464}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
   FUEL_USAGE: 0.05
@@ -632,12 +633,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 366161464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.769, y: -1.21, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.577, y: -0.614, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 562783058}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381350883
 GameObject:
@@ -999,6 +1000,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollspeed: 0.0005
   shipStatusDooer: {fileID: 164423849}
+  top: {fileID: 0}
+  bottom: {fileID: 0}
 --- !u!1 &562783057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1028,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2119136884}
+  - {fileID: 366161468}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2504,8 +2508,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throttleIdeal: 0.5
   steerAngleIdeal: 0
-  hooking: 0
-  stoking: 0
   idealSteeringPointer: {fileID: 452326719}
   idealThrottleLevel: {fileID: 1489257063}
   shipStatusDooer: {fileID: 164423849}
@@ -3131,7 +3133,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
         type: 2}
