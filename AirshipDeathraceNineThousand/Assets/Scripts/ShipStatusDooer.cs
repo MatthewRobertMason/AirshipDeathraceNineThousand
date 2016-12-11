@@ -37,6 +37,9 @@ public class ShipStatusDooer : MonoBehaviour
 	[Range(0.0f, 500.0f)]
 	private float stashedFuelLevel = 50.0f;
 
+
+	private float altitude = 10.0f;
+
     // Use this for initialization
     void Start ()
     {
@@ -62,6 +65,12 @@ public class ShipStatusDooer : MonoBehaviour
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
 
         steeringPointerActual.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentSteeringAngle);
+
+		altitude += getVerticalSpeed() * Time.deltaTime;
+		altitude = Mathf.Clamp(altitude, 0, 100);
+		if (altitude < 1) {
+			Debug.Log("CRASH");
+		}
     }
 
     public void toggleHook()
@@ -95,6 +104,10 @@ public class ShipStatusDooer : MonoBehaviour
 	}
 
 	public float getVerticalSpeed(){
-		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle() * 0.05f;
+		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle();
     }
+
+	public float GetAltitude(){
+		return altitude;
+	}
 }

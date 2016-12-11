@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallestCloud : MonoBehaviour {
+public class PrizeMind : MonoBehaviour {
 
 	public GameObject shipStatusDooer;
 	public Camera sceneCamera;
 	protected ShipStatusDooer ship;
 	public float speedMultiplier = 1f;
-	public float altitude = 10.0f;
+	public float altitude = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -33,4 +33,5 @@ public class SmallestCloud : MonoBehaviour {
 			transform.position = new Vector3(sceneCamera.aspect * 2, getViewHeight(), transform.position.z);
 		}
 	}
+
 }
