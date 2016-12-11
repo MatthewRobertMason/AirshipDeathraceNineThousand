@@ -120,9 +120,8 @@ public class CrewMind : MonoBehaviour {
 		case PeopleActionDecider.Task.Hook:
 
 			if (!workStarted) {
-				ship.toggleHook ();
 				workStarted = true;
-				waitTime = 5;
+				waitTime = 0.2f;
 				return true;
 			}
 
@@ -149,9 +148,8 @@ public class CrewMind : MonoBehaviour {
 
 		switch (currentTask) {
 		case PeopleActionDecider.Task.Idle:
-			pathPoints.Enqueue (locationIdle.transform.position);
 			pathPoints.Enqueue (locationCenter.transform.position);
-			waitTime = 5;
+			waitTime = 1;
 			break;
 
 		case PeopleActionDecider.Task.Throttle:
@@ -164,7 +162,6 @@ public class CrewMind : MonoBehaviour {
 			break;
 
 		case PeopleActionDecider.Task.Stoke:
-			pathPoints.Enqueue (locationCenter.transform.position);
 			pathPoints.Enqueue (locationUpGasser.transform.position);
 			break;
 
