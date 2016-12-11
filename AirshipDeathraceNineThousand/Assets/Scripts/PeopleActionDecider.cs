@@ -80,12 +80,7 @@ public class PeopleActionDecider : MonoBehaviour
             throttleIdeal -= 0.025f;
         
         idealThrottleLevel.transform.localPosition = new Vector3(idealThrottleLevel.transform.localPosition.x, (throttleIdeal - 0.5f), idealThrottleLevel.transform.localPosition.z);
-
-        //if (TaskList.Contains(Task.Throttle))
-        //    TaskList.Add(Task.Throttle);
-
-        if (throttleIdeal >= 0.05f)
-            throttleIdeal -= 0.05f;
+        
 		AddJob (Task.Throttle);
     }
 
