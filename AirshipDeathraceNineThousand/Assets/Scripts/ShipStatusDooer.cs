@@ -9,6 +9,10 @@ public class ShipStatusDooer : MonoBehaviour
     public GameObject throttleLevelActual;
     public GameObject fuelLevel;
 
+    public GameObject chain;
+    public GameObject startVertex;
+    public GameObject endVertex;
+
     [SerializeField]
     private float FUEL_USAGE = 0.05f;
     [SerializeField]
@@ -62,6 +66,11 @@ public class ShipStatusDooer : MonoBehaviour
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
 
         steeringPointerActual.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentSteeringAngle);
+
+
+        chain.transform.position = startVertex.transform.position;
+        //chain.transform.LookAt(endVertex.transform.position);
+        //chain.transform.localScale = new Vector3(1.0f, 12.0f);//Vector3.Distance(startVertex.transform.position, endVertex.transform.position));
     }
 
     public void toggleHook()
