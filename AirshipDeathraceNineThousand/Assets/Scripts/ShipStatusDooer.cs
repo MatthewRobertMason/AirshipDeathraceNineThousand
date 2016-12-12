@@ -47,6 +47,12 @@ public class ShipStatusDooer : MonoBehaviour
     private float THROTTLE_USAGE = 0.025f;
     [SerializeField]
     private float THROTTLE_AMOUNT = 1f;
+    [SerializeField]
+    private float FURNACE_DROP_PENALTY = 50.0f;
+    [SerializeField]
+    private float FURNACE_FLOAT_BOOST = 0.15f;
+    [SerializeField]
+    private float FUEL_USAGE_AT_MAX_HEIGHT = 10.0f;
 
     [Header("Ship Properties Info")]
     [Range(0, 1)]
@@ -56,8 +62,8 @@ public class ShipStatusDooer : MonoBehaviour
     [SerializeField]
     private float currentSteeringAngle = 0.0f;
 
-    [SerializeField]
-    private bool currentlyStoking = false;
+    //[SerializeField]
+    //private bool currentlyStoking = false;
     [SerializeField]
     private bool currentlyHooking = false;
     [SerializeField]
@@ -89,18 +95,22 @@ public class ShipStatusDooer : MonoBehaviour
 	void Update ()
     {
 		currentThrottle -= THROTTLE_USAGE * Time.deltaTime;
-		currentFuelLevel -= FUEL_USAGE * Time.deltaTime;
+
+        float fuelUsageHeightMultiplier = ((altitude / MaxAltitude()) * (altitude / MaxAltitude())) + 1;
+
+        fuelUsageHeightMultiplier = ((FUEL_USAGE_AT_MAX_HEIGHT-1) * Mathf.Pow((altitude / MaxAltitude()), 4.0f)) + 1;
+
+        currentFuelLevel -= fuelUsageHeightMultiplier * FUEL_USAGE * Time.deltaTime;
 
 		if (currentThrottle <= 0.0f)
 			currentThrottle = 0.0f;
 
 		if (currentFuelLevel <= 0.0f)
 			currentFuelLevel = 0.0f;
-		
+
         // Tick fuel usage
         fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / FUEL_MAXIMUM), 1.0f);
         fuelReserve.transform.localScale = new Vector3(1.0f, (stashedFuelLevel / RESERVE_MAXIMUM), 1.0f);
-
         // Tick throttle usage
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
 
@@ -234,13 +244,13 @@ public class ShipStatusDooer : MonoBehaviour
 		float furnaceEffect = (currentFuelLevel / FUEL_MAXIMUM - 0.05f);
 		// How fast should you drop when you run out of fuel
 		if (furnaceEffect < 0)
-			furnaceEffect *= 25;
+			furnaceEffect *= FURNACE_DROP_PENALTY;
 		// How fast do you rise when your fire is large
 		else
-			furnaceEffect *= 0.15f;
-
-		// How much does extra fuel drag you down.
-		float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.08f;
+			furnaceEffect *= FURNACE_FLOAT_BOOST;
+        
+        // How much does extra fuel drag you down.
+        float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.08f;
 
 		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle()  + furnaceEffect - reserveEffect;
     }

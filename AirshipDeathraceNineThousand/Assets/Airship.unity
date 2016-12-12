@@ -385,25 +385,27 @@ MonoBehaviour:
   togWoggler: {fileID: 2054189809}
   Hook: {fileID: 14704350}
   hookDropPosition: {fileID: 619194813}
-  hookDropSpeed: 1
+  hookDropSpeed: 1.5
   chain: {fileID: 562783057}
   chainQuad: {fileID: 366161464}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
-  FUEL_USAGE: 0.25
+  FUEL_USAGE: 0.1
   STOKING_AMOUNT: 10
   FUEL_MAXIMUM: 50
   RESERVE_MAXIMUM: 50
   THROTTLE_USAGE: 0.025
   THROTTLE_AMOUNT: 1
-  currentThrottle: 0
+  FURNACE_DROP_PENALTY: 50
+  FURNACE_FLOAT_BOOST: 0.15
+  FUEL_USAGE_AT_MAX_HEIGHT: 10
+  currentThrottle: 0.25
   currentSteeringAngle: 0
-  currentlyStoking: 0
   currentlyHooking: 0
   hookDeployed: 0
   hookReturned: 0
-  currentFuelLevel: 20
-  stashedFuelLevel: 5
+  currentFuelLevel: 10
+  stashedFuelLevel: 0
   altitude: 10
 --- !u!1 &207765169
 GameObject:
@@ -1567,7 +1569,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &818975060
 RectTransform:
@@ -2348,6 +2350,26 @@ MonoBehaviour:
   smallTreeMinAltitude: 14
   smallTreeMaxAltitude: 9
   aSmallTree: {fileID: 1280892311341736, guid: 2feb5e3eb30476d4fa0f9c97a8fa120a, type: 2}
+  aMoneyBags: {fileID: 1374964636272134, guid: 3d7a6f49e090c99499e578d93e703ac3, type: 2}
+  moneyBagsMinSpacing: 3
+  moneyBagsExpectedSpacing: 5
+  moneyBagsMinAltitude: 75
+  moneyBagsMaxAltitude: 95
+  aCat: {fileID: 1657014891567080, guid: ddd1f301df426c54e84dc5a79b1897ce, type: 2}
+  catMinSpacing: 25
+  catExpectedSpacing: 50
+  catMinAltitude: 50
+  catMaxAltitude: 90
+  aWood: {fileID: 1647092352176552, guid: 2b9cdc6670707bc488473d47be917cd1, type: 2}
+  woodMinSpacing: 0.5
+  woodExpectedSpacing: 0.75
+  woodMinAltitude: 2
+  woodMaxAltitude: 70
+  aJunk: {fileID: 1651862699855286, guid: dae21e9794a41c54a8d030d6be972b50, type: 2}
+  junkMinSpacing: 0.5
+  junkExpectedSpacing: 2
+  junkMinAltitude: 2
+  junkMaxAltitude: 70
   sceneCamera: {fileID: 1494591893}
   shipStatusDooer: {fileID: 164423849}
 --- !u!4 &1137277155

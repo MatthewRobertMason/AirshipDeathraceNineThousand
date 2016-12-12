@@ -45,9 +45,37 @@ public class GarbageFactory : MonoBehaviour {
 	public float smallTreeMaxAltitude = 9;
 	public GameObject aSmallTree;
 	protected float smallTreeDistance = 0;
+    
+    [Header("Balloon Loot spawning")]
+    public GameObject aMoneyBags;
+    public float moneyBagsMinSpacing = 30;
+    public float moneyBagsExpectedSpacing = 1;
+    public float moneyBagsMinAltitude = 14;
+    public float moneyBagsMaxAltitude = 9;
+    protected float moneyBagsDistance = 0;
 
+    public GameObject aCat;
+    public float catMinSpacing = 100;
+    public float catExpectedSpacing = 1;
+    public float catMinAltitude = 14;
+    public float catMaxAltitude = 9;
+    protected float catDistance = 0;
 
-	[Header("Links")]
+    public GameObject aWood;
+    public float woodMinSpacing = 10;
+    public float woodExpectedSpacing = 1;
+    public float woodMinAltitude = 14;
+    public float woodMaxAltitude = 9;
+    protected float woodDistance = 0;
+
+    public GameObject aJunk;
+    public float junkMinSpacing = 10;
+    public float junkExpectedSpacing = 1;
+    public float junkMinAltitude = 14;
+    public float junkMaxAltitude = 9;
+    protected float junkDistance = 0;
+    
+    [Header("Links")]
 	public Camera sceneCamera;
 	public GameObject shipStatusDooer;
 	ShipStatusDooer ship;
@@ -67,7 +95,12 @@ public class GarbageFactory : MonoBehaviour {
 		villageDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 		smallTreeDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 
-		if (houseDistance > houseMinSpacing) {
+        moneyBagsDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+        catDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+        woodDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+        junkDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+        
+        if (houseDistance > houseMinSpacing) {
 			if (Mathf.Exp (houseDistance - houseExpectedSpacing) / 2 > Random.value) {
 				GameObject newHouse = Instantiate(aHouse);
 
@@ -146,5 +179,69 @@ public class GarbageFactory : MonoBehaviour {
 				smallTreeDistance = 0;
 			}
 		}
-	}
+
+        if (moneyBagsDistance > moneyBagsMinSpacing)
+        {
+            if (Mathf.Exp(moneyBagsDistance - moneyBagsExpectedSpacing) / 2 > Random.value)
+            {
+                GameObject newMoneyBags = Instantiate(aMoneyBags);
+
+                PrizeMind moneyBagsMind = newMoneyBags.GetComponent<PrizeMind>();
+                moneyBagsMind.shipStatusDooer = shipStatusDooer;
+                moneyBagsMind.sceneCamera = sceneCamera;
+                moneyBagsMind.altitude = moneyBagsMinAltitude + (moneyBagsMaxAltitude - moneyBagsMinAltitude) * Random.value; ;
+
+                newMoneyBags.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newMoneyBags.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+                moneyBagsDistance = 0;
+            }
+        }
+
+        if (catDistance > catMinSpacing)
+        {
+            if (Mathf.Exp(catDistance - catExpectedSpacing) / 2 > Random.value)
+            {
+                GameObject newCat = Instantiate(aCat);
+
+                PrizeMind catMind = newCat.GetComponent<PrizeMind>();
+                catMind.shipStatusDooer = shipStatusDooer;
+                catMind.sceneCamera = sceneCamera;
+                catMind.altitude = catMinAltitude + (catMaxAltitude - catMinAltitude) * Random.value; ;
+
+                newCat.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newCat.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+                catDistance = 0;
+            }
+        }
+
+        if (woodDistance > woodMinSpacing)
+        {
+            if (Mathf.Exp(woodDistance - woodExpectedSpacing) / 2 > Random.value)
+            {
+                GameObject newWood = Instantiate(aWood);
+
+                PrizeMind woodMind = newWood.GetComponent<PrizeMind>();
+                woodMind.shipStatusDooer = shipStatusDooer;
+                woodMind.sceneCamera = sceneCamera;
+                woodMind.altitude = woodMinAltitude + (woodMaxAltitude - woodMinAltitude) * Random.value; ;
+
+                newWood.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newWood.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+                woodDistance = 0;
+            }
+        }
+
+        if (junkDistance > junkMinSpacing)
+        {
+            if (Mathf.Exp(junkDistance - houseExpectedSpacing) / 2 > Random.value)
+            {
+                GameObject newJunk = Instantiate(aJunk);
+
+                PrizeMind junkMind = newJunk.GetComponent<PrizeMind>();
+                junkMind.shipStatusDooer = shipStatusDooer;
+                junkMind.sceneCamera = sceneCamera;
+                junkMind.altitude = junkMinAltitude + (junkMaxAltitude - junkMinAltitude) * Random.value; ;
+
+                newJunk.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newJunk.GetComponent<SpriteRenderer>().bounds.size.x, 0, 0);
+                junkDistance = 0;
+            }
+        }
+    }
 }
