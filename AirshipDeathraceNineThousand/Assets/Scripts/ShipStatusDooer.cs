@@ -61,6 +61,8 @@ public class ShipStatusDooer : MonoBehaviour
     private bool currentlyHooking = false;
     [SerializeField]
     private bool hookDeployed = false;
+    [SerializeField]
+    private bool hookReturned = false;
 
     [SerializeField]
     [Range(0.0f, 50.0f)]
@@ -133,7 +135,7 @@ public class ShipStatusDooer : MonoBehaviour
         
         if (Hook.transform.position == hookDropPosition.transform.position)
             hookDeployed = true;
-
+        
         if (!currentlyHooking)
         {
             hookDeployed = false;
@@ -144,6 +146,11 @@ public class ShipStatusDooer : MonoBehaviour
             currentlyHooking = false;
         }
 
+        if (Hook.transform.position == hookInitial)
+            hookReturned = true;
+        else
+            hookReturned = false;
+
         togWoggler.transform.localScale.Set((currentlyHooking) ? -1.0f : 1.0f, 1.0f, 1.0f);
 
 		// ====================
@@ -151,6 +158,35 @@ public class ShipStatusDooer : MonoBehaviour
 
 		score += Time.deltaTime * getCurrentThrottle() * GetAltitude();
 		scoreForm.text = string.Format("{0:D}", (int)score);
+
+        if (hookReturned)
+        {
+            LootGrabDooer lootGrabDooer = Hook.GetComponent<LootGrabDooer>();
+
+            if (lootGrabDooer.hooked != null)
+            {
+                PrizeMind prizeMind = lootGrabDooer.hooked.GetComponent<PrizeMind>();
+
+                switch (prizeMind.prizeType)
+                {
+                    case PrizeMind.PrizeType.Junk:
+                        break;
+
+                    case PrizeMind.PrizeType.Burnable:
+                        stashedFuelLevel += prizeMind.prizeAmount;
+                        if (stashedFuelLevel > RESERVE_MAXIMUM)
+                            stashedFuelLevel = RESERVE_MAXIMUM;
+                        break;
+
+                    case PrizeMind.PrizeType.Points:
+                        score += prizeMind.prizeAmount;
+                        break;
+                }
+
+                Destroy(lootGrabDooer.hooked);
+                lootGrabDooer.hooked = null;
+            }
+        }
     }
 
     public void toggleHook()

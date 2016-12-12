@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PrizeMind : MonoBehaviour {
+    public enum PrizeType
+    {
+        Junk,
+        Burnable,
+        Points
+    }
 
-	public GameObject shipStatusDooer;
+    public GameObject shipStatusDooer;
 	public Camera sceneCamera;
 	protected ShipStatusDooer ship;
 	public float speedMultiplier = 1f;
 	public float altitude = 1.0f;
 	public bool hooked = false;
+
+    public float prizeAmount = 0.0f;
+    public PrizeType prizeType = PrizeType.Junk;
 
 	// Use this for initialization
 	void Start () {

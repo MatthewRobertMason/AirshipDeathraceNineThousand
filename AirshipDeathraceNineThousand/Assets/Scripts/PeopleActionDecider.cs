@@ -19,8 +19,12 @@ public class PeopleActionDecider : MonoBehaviour
     [Range(-45, 45)]
     [SerializeField]
     private float steerAngleIdeal = 0.0f;
-    
-	private Queue<Task> TaskList;
+
+    [Range(0.0f, 1.0f)]
+    [SerializeField]
+    private float lazynessAutoThrottle = 0.5f;
+
+    private Queue<Task> TaskList;
 	private HashSet<Task> ActiveTasks;
     
     public GameObject idealSteeringPointer;
@@ -140,24 +144,12 @@ public class PeopleActionDecider : MonoBehaviour
 
 	public void ReleaseTask(Task task){
 		ActiveTasks.Remove (task);
-
-        switch (task)
-        {
-            
-        }
 	}
 
     
 	// Update is called once per frame
 	void Update ()
     {
-        /*
-        private bool steerUpButtonPushed;
-        private bool steerDownButtonPushed;
-        private bool throttleUpButtonPushed;
-        private bool throttleDownButtonPushed;
-        */
-
         if (steerUpButtonPushed)
         {
             SteerUp();
@@ -176,6 +168,11 @@ public class PeopleActionDecider : MonoBehaviour
         if (throttleDownButtonPushed)
         {
             ThrottleDown();
+        }
+
+        if (throttleIdeal - shipStatusDooer.GetComponent<ShipStatusDooer>().getCurrentThrottle() > (throttleIdeal * lazynessAutoThrottle))
+        {
+            AddJob(Task.Throttle);
         }
     }
 }
