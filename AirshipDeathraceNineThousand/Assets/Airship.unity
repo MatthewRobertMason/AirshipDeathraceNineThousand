@@ -994,7 +994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547515631
 GameObject:
@@ -1122,7 +1122,7 @@ Transform:
   m_Children:
   - {fileID: 366161468}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580325056
 GameObject:
@@ -1413,7 +1413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &981039644
 Prefab:
@@ -1637,7 +1637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1028122363
 GameObject:
@@ -2043,6 +2043,12 @@ MonoBehaviour:
   houseExpectedSpacing: 5
   houseAltitude: 1
   aHouse: {fileID: 1939782960357880, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
+  cloudMinSpacing: 0
+  cloudExpectedSpacing: 1
+  cloudMinAltitude: 4
+  cloudMaxAltitude: 50
+  aCloud1: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
+  aCloud2: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
   sceneCamera: {fileID: 1494591893}
   shipStatusDooer: {fileID: 164423849}
 --- !u!4 &1137277155
@@ -2056,7 +2062,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190715413
 GameObject:
@@ -2088,7 +2094,7 @@ Transform:
   - {fileID: 636900405}
   - {fileID: 278139429}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267383924
 GameObject:
@@ -3808,63 +3814,6 @@ Transform:
   m_Father: {fileID: 580325057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1989535185
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.144
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4704030338814860, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114015543826530732, guid: 851074afcbd91984799d033d822c4e79,
-        type: 2}
-      propertyPath: shipStatusDooer
-      value: 
-      objectReference: {fileID: 164423849}
-    - target: {fileID: 114015543826530732, guid: 851074afcbd91984799d033d822c4e79,
-        type: 2}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1494591893}
-    - target: {fileID: 114015543826530732, guid: 851074afcbd91984799d033d822c4e79,
-        type: 2}
-      propertyPath: sceneCamera
-      value: 
-      objectReference: {fileID: 1494591893}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 851074afcbd91984799d033d822c4e79, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2032734849
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,8 +29,8 @@ public class SmallestCloud : MonoBehaviour {
 		transform.position = pos;
 
 
-		if (!this.GetComponent<SpriteRenderer> ().isVisible) {
-			transform.position = new Vector3(sceneCamera.aspect * 2, getViewHeight(), transform.position.z);
+		if (transform.position.x < -sceneCamera.aspect * sceneCamera.orthographicSize - GetComponent<SpriteRenderer> ().bounds.size.x){
+			Destroy(this.gameObject);
 		}
 	}
 }
