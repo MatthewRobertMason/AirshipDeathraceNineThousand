@@ -70,8 +70,7 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void ThrottleUp()
     {
-        if (throttleIdeal < 1.0f - 0.025f)
-            throttleIdeal += 0.025f;
+		throttleIdeal = Mathf.Clamp01(throttleIdeal + Time.deltaTime);
         
         idealThrottleLevel.transform.localPosition = new Vector3(idealThrottleLevel.transform.localPosition.x, (throttleIdeal-0.5f), idealThrottleLevel.transform.localPosition.z);
 
@@ -80,8 +79,7 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void ThrottleDown()
     {
-        if (throttleIdeal > 0.025f)
-            throttleIdeal -= 0.025f;
+		throttleIdeal = Mathf.Clamp01(throttleIdeal - Time.deltaTime);
         
         idealThrottleLevel.transform.localPosition = new Vector3(idealThrottleLevel.transform.localPosition.x, (throttleIdeal - 0.5f), idealThrottleLevel.transform.localPosition.z);
         
@@ -94,8 +92,7 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void SteerUp()
     {
-        if (steerAngleIdeal <= 44.00f)
-            steerAngleIdeal += 1.00f;
+		steerAngleIdeal = Mathf.Clamp(steerAngleIdeal + 15*Time.deltaTime, -44, 44);
 
         idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 
@@ -104,8 +101,7 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void SteerDown()
     {
-        if (steerAngleIdeal >= -44.00f)
-            steerAngleIdeal -= 1.00f;
+		steerAngleIdeal = Mathf.Clamp(steerAngleIdeal - 15*Time.deltaTime, -44, 44);
 
         idealSteeringPointer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, steerAngleIdeal);
 

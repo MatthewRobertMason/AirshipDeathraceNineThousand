@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipStatusDooer: {fileID: 0}
   sceneCamera: {fileID: 0}
-  speedMultiplier: 0.1
+  speedMultiplier: 4
   altitude: 7.5
   hooked: 0
   prizeAmount: 15

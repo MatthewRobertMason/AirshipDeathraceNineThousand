@@ -26,7 +26,7 @@ public class BackgroundController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float y = scrollspeed * ship.getCurrentThrottle();
+		float y = scrollspeed * ship.getCurrentThrottle() * Time.deltaTime;
 
         offset += new Vector2(y, 0);
 

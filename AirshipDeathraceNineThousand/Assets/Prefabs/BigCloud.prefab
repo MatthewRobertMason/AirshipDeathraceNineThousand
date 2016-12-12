@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipStatusDooer: {fileID: 0}
   sceneCamera: {fileID: 0}
-  speedMultiplier: 0.1
+  speedMultiplier: 2
   altitude: 10
 --- !u!212 &212475661951916520
 SpriteRenderer:

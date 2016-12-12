@@ -51,12 +51,12 @@ public class GarbageFactory : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		// 
-		houseDistance += ship.getCurrentThrottle() * Time.deltaTime;
-		cloudDistance += ship.getCurrentThrottle() * Time.deltaTime;
-		bigCloudDistance += ship.getCurrentThrottle() * Time.deltaTime;
-		villageDistance += ship.getCurrentThrottle() * Time.deltaTime;
+		houseDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+		cloudDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+		bigCloudDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+		villageDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 
 		if (houseDistance > houseMinSpacing) {
 			if (Mathf.Exp (houseDistance - houseExpectedSpacing) / 2 > Random.value) {
