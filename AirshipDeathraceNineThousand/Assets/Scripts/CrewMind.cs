@@ -130,12 +130,14 @@ public class CrewMind : MonoBehaviour {
 
 		case PeopleActionDecider.Task.Stoke:
 			if (!workStarted) {
-				workStarted = true;
+                animator.SetTrigger("crewSteer");
+                workStarted = true;
 				waitTime = 2;
-				return true;
+                return true;
 			}
-
-			ship.stokeFire ();
+                
+            animator.SetTrigger("crewStop");
+            ship.stokeFire ();
 			pathPoints.Enqueue (locationCenter.transform.position);
 			return false;
 
