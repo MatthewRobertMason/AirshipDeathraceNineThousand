@@ -66,7 +66,7 @@ public class ShipStatusDooer : MonoBehaviour
 
     [SerializeField]
     [Range(0.0f, 50.0f)]
-    private float currentFuelLevel = 10.0f;
+    private float currentFuelLevel = 20.0f;
 
     [SerializeField]
     [Range(0.0f, 500.0f)]
@@ -91,7 +91,7 @@ public class ShipStatusDooer : MonoBehaviour
 			currentThrottle = 0.0f;
 
 		if (currentFuelLevel <= 0.0f)
-			currentFuelLevel += 10.0f;
+			currentFuelLevel = 0.0f;
 		
         // Tick fuel usage
         fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / FUEL_MAXIMUM), 1.0f);
@@ -220,7 +220,15 @@ public class ShipStatusDooer : MonoBehaviour
 	}
 
 	public float getVerticalSpeed(){
-		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle();
+		float furnaceEffect = (currentFuelLevel / FUEL_MAXIMUM - 0.05f);
+		if (furnaceEffect < 0)
+			furnaceEffect *= 25;
+		else
+			furnaceEffect *= 0.5f;
+
+		float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.2f;
+
+		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle()  + furnaceEffect - reserveEffect;
     }
 
 	public float GetAltitude(){
