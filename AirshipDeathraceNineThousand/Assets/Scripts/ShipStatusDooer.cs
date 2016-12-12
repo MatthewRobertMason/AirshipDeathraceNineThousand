@@ -82,7 +82,7 @@ public class ShipStatusDooer : MonoBehaviour
     void Start ()
     {
         hookInitial = Hook.transform.position;
-        AudioSource sfx = this.gameObject.GetComponent<AudioSource>();
+        //AudioSource sfx = this.gameObject.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -113,8 +113,8 @@ public class ShipStatusDooer : MonoBehaviour
 
 		if (altitude < 1)
         {
-            crashSfx.Play();
-            SceneManager.LoadScene(1);
+            //crashSfx.Play();
+            SceneManager.LoadScene(3);
 		}
 
 
