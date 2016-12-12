@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LootGrabDooer : MonoBehaviour {
 
+	public GameObject shipStatusDooer;
 	public GameObject hooked = null;
-
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +21,9 @@ public class LootGrabDooer : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (hooked)
+		if (hooked || !shipStatusDooer.GetComponent<ShipStatusDooer>().isHooking())
 			return;
-
-
+		
 		hooked = other.gameObject;
 		hooked.GetComponent<PrizeMind>().hooked = true;
 	}

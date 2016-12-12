@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8b2688a568d1d42b3e380b2b5ba058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipStatusDooer: {fileID: 164423849}
   hooked: {fileID: 0}
 --- !u!61 &14704354
 BoxCollider2D:

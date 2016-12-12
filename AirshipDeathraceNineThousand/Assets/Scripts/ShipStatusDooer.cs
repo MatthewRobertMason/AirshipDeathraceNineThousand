@@ -196,6 +196,10 @@ public class ShipStatusDooer : MonoBehaviour
         }
     }
 
+	public bool isHooking(){
+		return currentlyHooking;
+	}
+
     public void toggleHook()
     {
         currentlyHooking = !currentlyHooking;
