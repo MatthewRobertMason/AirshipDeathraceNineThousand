@@ -389,19 +389,19 @@ MonoBehaviour:
   chainQuad: {fileID: 366161464}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
-  FUEL_USAGE: 0.005
+  FUEL_USAGE: 0.1
   STOKING_AMOUNT: 10
   FUEL_MAXIMUM: 50
   RESERVE_MAXIMUM: 500
-  THROTTLE_USAGE: 0.00025
-  THROTTLE_AMOUNT: 0.025
+  THROTTLE_USAGE: 0.025
+  THROTTLE_AMOUNT: 1
   currentThrottle: 0
   currentSteeringAngle: 0
   currentlyStoking: 0
   currentlyHooking: 0
   hookDeployed: 0
   hookReturned: 0
-  currentFuelLevel: 10
+  currentFuelLevel: 20
   stashedFuelLevel: 50
   altitude: 10
 --- !u!1 &207765169
@@ -1454,7 +1454,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4210749686545920, guid: 64798c3f31d3d7f44810e7a24c475277, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114024622703272966, guid: 64798c3f31d3d7f44810e7a24c475277,
         type: 2}
@@ -3142,7 +3142,7 @@ MonoBehaviour:
   shipStatusDooer: {fileID: 164423849}
   sceneCamera: {fileID: 1494591893}
   speedMultiplier: 4
-  altitude: -1
+  altitude: -1.5
 --- !u!23 &1644935906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4150,7 +4150,7 @@ Transform:
   - {fileID: 1099585062}
   - {fileID: 2130496174}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130496173
 GameObject:
