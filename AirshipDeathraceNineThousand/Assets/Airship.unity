@@ -400,6 +400,7 @@ MonoBehaviour:
   currentlyStoking: 0
   currentlyHooking: 0
   hookDeployed: 0
+  hookReturned: 0
   currentFuelLevel: 10
   stashedFuelLevel: 50
 --- !u!1 &207765169
@@ -2046,9 +2047,14 @@ MonoBehaviour:
   cloudMinSpacing: 0
   cloudExpectedSpacing: 1
   cloudMinAltitude: 4
-  cloudMaxAltitude: 50
+  cloudMaxAltitude: 20
   aCloud1: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
   aCloud2: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
+  bigCloudMinSpacing: 1
+  bigCloudExpectedSpacing: 2.5
+  bigCloudMinAltitude: 16
+  bigCloudMaxAltitude: 60
+  aBigCloud: {fileID: 1977518430230596, guid: deb1b3e2a4d042f43a3ea8cfbbebe562, type: 2}
   sceneCamera: {fileID: 1494591893}
   shipStatusDooer: {fileID: 164423849}
 --- !u!4 &1137277155
@@ -3048,6 +3054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throttleIdeal: 0.5
   steerAngleIdeal: 0
+  lazynessAutoThrottle: 0.5
   idealSteeringPointer: {fileID: 452326719}
   idealThrottleLevel: {fileID: 2130496173}
   shipStatusDooer: {fileID: 164423849}
