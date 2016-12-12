@@ -380,6 +380,7 @@ MonoBehaviour:
   steeringPointerActual: {fileID: 207765169}
   throttleLevelActual: {fileID: 1801763478}
   fuelLevel: {fileID: 1103738379}
+  fuelReserve: {fileID: 636900404}
   togWoggler: {fileID: 2054189809}
   Hook: {fileID: 14704350}
   hookDropPosition: {fileID: 619194813}
@@ -1190,7 +1191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636900405}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FuelReserveLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1983,7 +1984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1103738380}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FuelLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3199,7 +3200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1801763479}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ThrottleLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

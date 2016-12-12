@@ -15,6 +15,7 @@ public class ShipStatusDooer : MonoBehaviour
     public GameObject steeringPointerActual;
     public GameObject throttleLevelActual;
     public GameObject fuelLevel;
+    public GameObject fuelReserve;
     public GameObject togWoggler;
 
     [Header("Hook Stuff")] 
@@ -89,6 +90,7 @@ public class ShipStatusDooer : MonoBehaviour
 		
         // Tick fuel usage
         fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / 50.0f), 1.0f);
+        fuelReserve.transform.localScale = new Vector3(1.0f, (stashedFuelLevel / 500.0f), 1.0f);
 
         // Tick throttle usage
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
