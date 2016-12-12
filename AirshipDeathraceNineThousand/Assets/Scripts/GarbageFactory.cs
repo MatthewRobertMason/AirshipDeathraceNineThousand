@@ -38,6 +38,14 @@ public class GarbageFactory : MonoBehaviour {
 	public GameObject cVillage;
 	protected float villageDistance = 0;
 
+	[Header("Small Tree spawning")]
+	public float smallTreeMinSpacing = 1;
+	public float smallTreeExpectedSpacing = 1;
+	public float smallTreeMinAltitude = 14;
+	public float smallTreeMaxAltitude = 9;
+	public GameObject aSmallTree;
+	protected float smallTreeDistance = 0;
+
 
 	[Header("Links")]
 	public Camera sceneCamera;
@@ -57,6 +65,7 @@ public class GarbageFactory : MonoBehaviour {
 		cloudDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 		bigCloudDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 		villageDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
+		smallTreeDistance += ship.getCurrentThrottle() * Time.fixedDeltaTime;
 
 		if (houseDistance > houseMinSpacing) {
 			if (Mathf.Exp (houseDistance - houseExpectedSpacing) / 2 > Random.value) {
@@ -121,6 +130,20 @@ public class GarbageFactory : MonoBehaviour {
 
 				newVillage.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newVillage.GetComponent<SpriteRenderer> ().bounds.size.x, 0, 0);
 				villageDistance = 0;
+			}
+		}
+
+		if (smallTreeDistance > smallTreeMinSpacing) {
+			if (Mathf.Exp (smallTreeDistance - smallTreeExpectedSpacing) / 2 > Random.value) {
+				GameObject newCloud = Instantiate(aSmallTree);
+
+				SmallestCloud cloudMind = newCloud.GetComponent<SmallestCloud> ();
+				cloudMind.shipStatusDooer = shipStatusDooer;
+				cloudMind.sceneCamera = sceneCamera;
+				cloudMind.altitude = smallTreeMinAltitude + (smallTreeMaxAltitude - smallTreeMinAltitude) * Random.value;
+
+				newCloud.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newCloud.GetComponent<SpriteRenderer> ().bounds.size.x, 0, 0);
+				smallTreeDistance = 0;
 			}
 		}
 	}
