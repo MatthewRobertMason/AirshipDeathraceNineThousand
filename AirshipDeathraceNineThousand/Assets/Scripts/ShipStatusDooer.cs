@@ -35,7 +35,7 @@ public class ShipStatusDooer : MonoBehaviour
 
     [Header("Constants")]
     [SerializeField]
-    private float FUEL_USAGE = 1f;
+    private float FUEL_USAGE = 0.1f;
     [SerializeField]
     private float STOKING_AMOUNT = 10.0f;
     [SerializeField]
@@ -43,9 +43,9 @@ public class ShipStatusDooer : MonoBehaviour
     [SerializeField]
     private float RESERVE_MAXIMUM = 500.0f;
     [SerializeField]
-    private float THROTTLE_USAGE = 0.1f;
+    private float THROTTLE_USAGE = 0.025f;
     [SerializeField]
-    private float THROTTLE_AMOUNT = 0.05f;
+    private float THROTTLE_AMOUNT = 1f;
 
     [Header("Ship Properties Info")]
     [Range(0, 1)]
@@ -202,7 +202,7 @@ public class ShipStatusDooer : MonoBehaviour
     }
 
 	public void doPedalling(float workLevel){
-		currentThrottle += workLevel;
+		currentThrottle += workLevel * THROTTLE_AMOUNT;
 	}
 
 	public void doSteering(float workLevel, float targetAngle){
@@ -224,9 +224,9 @@ public class ShipStatusDooer : MonoBehaviour
 		if (furnaceEffect < 0)
 			furnaceEffect *= 25;
 		else
-			furnaceEffect *= 0.5f;
+			furnaceEffect *= 0.15f;
 
-		float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.2f;
+		float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.08f;
 
 		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle()  + furnaceEffect - reserveEffect;
     }
