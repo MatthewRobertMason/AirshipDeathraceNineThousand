@@ -3142,7 +3142,7 @@ MonoBehaviour:
   shipStatusDooer: {fileID: 164423849}
   sceneCamera: {fileID: 1494591893}
   speedMultiplier: 4
-  altitude: -1
+  altitude: -1.5
 --- !u!23 &1644935906
 MeshRenderer:
   m_ObjectHideFlags: 0
