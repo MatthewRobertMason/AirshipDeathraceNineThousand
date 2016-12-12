@@ -167,14 +167,20 @@ public class ShipStatusDooer : MonoBehaviour
             hookReturned = true;
         else
             hookReturned = false;
-
+        /*
         togWoggler.transform.localScale.Set((currentlyHooking) ? -1.0f : 1.0f, 1.0f, 1.0f);
+        if (currentlyHooking)
+            togWoggler.transform.localScale.Set(-1.0f, 1.0f, 1.0f);
+        else
+            togWoggler.transform.localScale.Set(1.0f, 1.0f, 1.0f);
+        */
 
-		// ====================
-		// Score things
 
-		score += Time.deltaTime * getCurrentThrottle() * GetAltitude();
-		scoreForm.text = string.Format("{0:D}", (int)score);
+        // ====================
+        // Score things
+
+        score += Time.deltaTime * getCurrentThrottle() * GetAltitude();
+		scoreForm.text = string.Format("Score: {0:D}", (int)score);
 
         if (hookReturned)
         {
