@@ -93,7 +93,7 @@ MonoBehaviour:
   speedMultiplier: 4
   altitude: 7.5
   hooked: 0
-  prizeAmount: 15
+  prizeAmount: 10
   prizeType: 1
 --- !u!212 &212941766209861518
 SpriteRenderer:
