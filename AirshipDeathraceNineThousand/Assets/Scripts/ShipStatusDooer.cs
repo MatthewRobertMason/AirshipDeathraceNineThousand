@@ -114,6 +114,7 @@ public class ShipStatusDooer : MonoBehaviour
 		if (altitude < 1)
         {
             //crashSfx.Play();
+            PlayerPrefs.SetFloat("score", score);
             SceneManager.LoadScene(3);
 		}
 
