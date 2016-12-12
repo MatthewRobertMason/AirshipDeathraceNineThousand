@@ -389,10 +389,12 @@ MonoBehaviour:
   chainQuad: {fileID: 366161464}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
-  FUEL_USAGE: 0.05
-  THROTTLE_USAGE: 0.0005
-  STOKING_AMOUNT: 0.5
-  THROTTLE_AMOUNT: 0.05
+  FUEL_USAGE: 0.005
+  STOKING_AMOUNT: 10
+  FUEL_MAXIMUM: 50
+  RESERVE_MAXIMUM: 500
+  THROTTLE_USAGE: 0.00025
+  THROTTLE_AMOUNT: 0.025
   currentThrottle: 0
   currentSteeringAngle: 0
   currentlyStoking: 0
@@ -1358,7 +1360,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10000
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &818975060
 RectTransform:
@@ -1492,6 +1494,11 @@ Prefab:
       propertyPath: shipStatusDooer
       value: 
       objectReference: {fileID: 164423849}
+    - target: {fileID: 212877375401672854, guid: 64798c3f31d3d7f44810e7a24c475277,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64798c3f31d3d7f44810e7a24c475277, type: 2}
   m_IsPrefabParent: 0
@@ -2105,7 +2112,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267383924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0, z: 0}
+  m_LocalPosition: {x: -0.66, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 481307042}

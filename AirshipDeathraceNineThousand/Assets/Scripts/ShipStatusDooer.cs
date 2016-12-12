@@ -37,10 +37,13 @@ public class ShipStatusDooer : MonoBehaviour
     [SerializeField]
     private float FUEL_USAGE = 0.05f;
     [SerializeField]
-    private float THROTTLE_USAGE = 0.0005f;
-
+    private float STOKING_AMOUNT = 10.0f;
     [SerializeField]
-    private float STOKING_AMOUNT = 0.5f;
+    private float FUEL_MAXIMUM = 50.0f;
+    [SerializeField]
+    private float RESERVE_MAXIMUM = 500.0f;
+    [SerializeField]
+    private float THROTTLE_USAGE = 0.0005f;
     [SerializeField]
     private float THROTTLE_AMOUNT = 0.05f;
 
@@ -89,8 +92,8 @@ public class ShipStatusDooer : MonoBehaviour
 			currentFuelLevel += 10.0f;
 		
         // Tick fuel usage
-        fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / 50.0f), 1.0f);
-        fuelReserve.transform.localScale = new Vector3(1.0f, (stashedFuelLevel / 500.0f), 1.0f);
+        fuelLevel.transform.localScale = new Vector3(1.0f, (currentFuelLevel / FUEL_MAXIMUM), 1.0f);
+        fuelReserve.transform.localScale = new Vector3(1.0f, (stashedFuelLevel / RESERVE_MAXIMUM), 1.0f);
 
         // Tick throttle usage
         throttleLevelActual.transform.localScale = new Vector3(1.0f, currentThrottle, 1.0f);
@@ -157,7 +160,7 @@ public class ShipStatusDooer : MonoBehaviour
 
     public void stokeFire()
     {
-		float delta = Mathf.Min(STOKING_AMOUNT, stashedFuelLevel);
+		float delta = Mathf.Min(STOKING_AMOUNT, stashedFuelLevel, (FUEL_MAXIMUM - currentFuelLevel));
 		stashedFuelLevel -= delta;
         currentFuelLevel += delta;
     }
