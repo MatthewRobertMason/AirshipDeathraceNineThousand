@@ -32,11 +32,15 @@ public class PeopleActionDecider : MonoBehaviour
 
     public GameObject shipStatusDooer;
 
+    public GameObject audioSource;
+    public int currentAudioTrack;
+    public AudioClip[] audioTracks;
+
     private bool steerUpButtonPushed;
     private bool steerDownButtonPushed;
     private bool throttleUpButtonPushed;
     private bool throttleDownButtonPushed;
-
+    
     public void SteerUpButtonDown()
     { steerUpButtonPushed = true; }
 
@@ -142,6 +146,24 @@ public class PeopleActionDecider : MonoBehaviour
 		ActiveTasks.Remove (task);
 	}
 
+    public void changeAudio()
+    {
+        Debug.Log("changing audio");
+        AudioSource audSource = audioSource.GetComponent<AudioSource>();
+
+        currentAudioTrack = (currentAudioTrack + 1) % (audioTracks.Length + 1);
+        if (currentAudioTrack == audioTracks.Length)
+        {
+            // Mute
+            audSource.mute = true;
+        }
+        else
+        {
+            audSource.clip = audioTracks[currentAudioTrack];
+            audSource.mute = false;
+            audSource.Play();
+        }
+    }
     
 	// Update is called once per frame
 	void Update ()
