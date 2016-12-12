@@ -148,7 +148,6 @@ public class PeopleActionDecider : MonoBehaviour
 
     public void changeAudio()
     {
-        Debug.Log("changing audio");
         AudioSource audSource = audioSource.GetComponent<AudioSource>();
 
         currentAudioTrack = (currentAudioTrack + 1) % (audioTracks.Length + 1);
@@ -161,6 +160,7 @@ public class PeopleActionDecider : MonoBehaviour
         {
             audSource.clip = audioTracks[currentAudioTrack];
             audSource.mute = false;
+            audSource.loop = true;
             audSource.Play();
         }
     }
