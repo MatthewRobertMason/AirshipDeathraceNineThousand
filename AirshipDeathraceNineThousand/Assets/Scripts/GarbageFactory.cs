@@ -28,6 +28,17 @@ public class GarbageFactory : MonoBehaviour {
 	public GameObject aBigCloud;
 	protected float bigCloudDistance = 0;
 
+	[Header("Village spawning")]
+	public float villageMinSpacing = 10;
+	public float villageExpectedSpacing = 15f;
+	public float villageMinAltitude = 15;
+	public float villageMaxAltitude = 40;
+	public GameObject aVillage;
+	public GameObject bVillage;
+	public GameObject cVillage;
+	protected float villageDistance = 0;
+
+
 	[Header("Links")]
 	public Camera sceneCamera;
 	public GameObject shipStatusDooer;
@@ -45,6 +56,7 @@ public class GarbageFactory : MonoBehaviour {
 		houseDistance += ship.getCurrentThrottle() * Time.deltaTime;
 		cloudDistance += ship.getCurrentThrottle() * Time.deltaTime;
 		bigCloudDistance += ship.getCurrentThrottle() * Time.deltaTime;
+		villageDistance += ship.getCurrentThrottle() * Time.deltaTime;
 
 		if (houseDistance > houseMinSpacing) {
 			if (Mathf.Exp (houseDistance - houseExpectedSpacing) / 2 > Random.value) {
@@ -92,5 +104,24 @@ public class GarbageFactory : MonoBehaviour {
 			}
 		}
 
+		if (villageDistance > villageMinSpacing) {
+			if (Mathf.Exp (villageDistance - villageExpectedSpacing) / 2 > Random.value) {
+				GameObject newVillage;
+				if(Random.value < 0.333)
+					newVillage = Instantiate(aVillage);
+				else if(Random.value < 0.666)
+					newVillage = Instantiate(bVillage);
+				else
+					newVillage = Instantiate(cVillage);
+
+				SmallestCloud cloudMind = newVillage.GetComponent<SmallestCloud> ();
+				cloudMind.shipStatusDooer = shipStatusDooer;
+				cloudMind.sceneCamera = sceneCamera;
+				cloudMind.altitude = villageMinAltitude + (villageMaxAltitude - villageMinAltitude) * Random.value;
+
+				newVillage.transform.position = new Vector3(sceneCamera.aspect * sceneCamera.orthographicSize + newVillage.GetComponent<SpriteRenderer> ().bounds.size.x, 0, 0);
+				villageDistance = 0;
+			}
+		}
 	}
 }

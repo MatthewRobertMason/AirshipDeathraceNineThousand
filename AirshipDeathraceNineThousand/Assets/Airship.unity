@@ -2055,6 +2055,13 @@ MonoBehaviour:
   bigCloudMinAltitude: 16
   bigCloudMaxAltitude: 60
   aBigCloud: {fileID: 1977518430230596, guid: deb1b3e2a4d042f43a3ea8cfbbebe562, type: 2}
+  villageMinSpacing: 2
+  villageExpectedSpacing: 3
+  villageMinAltitude: 15
+  villageMaxAltitude: 40
+  aVillage: {fileID: 1158538071547576, guid: da4943b2fd2863244899ac0f0150446c, type: 2}
+  bVillage: {fileID: 1317038441250758, guid: 758cc83ebda02e04090b6ae0716ddf72, type: 2}
+  cVillage: {fileID: 1710762038011900, guid: f869483c1fcb4114e8580246e0aefc25, type: 2}
   sceneCamera: {fileID: 1494591893}
   shipStatusDooer: {fileID: 164423849}
 --- !u!4 &1137277155
