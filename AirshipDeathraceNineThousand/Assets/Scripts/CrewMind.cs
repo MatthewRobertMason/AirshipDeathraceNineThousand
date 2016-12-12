@@ -150,7 +150,7 @@ public class CrewMind : MonoBehaviour {
 
 		switch (currentTask) {
 		case PeopleActionDecider.Task.Idle:
-			pathPoints.Enqueue (locationCenter.transform.position);
+			pathPoints.Enqueue (locationIdle.transform.position);
 			waitTime = 1;
 			break;
 
