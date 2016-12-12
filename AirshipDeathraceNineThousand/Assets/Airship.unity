@@ -400,6 +400,7 @@ MonoBehaviour:
   currentlyStoking: 0
   currentlyHooking: 0
   hookDeployed: 0
+  hookReturned: 0
   currentFuelLevel: 10
   stashedFuelLevel: 50
 --- !u!1 &207765169
@@ -2061,6 +2062,16 @@ Prefab:
       propertyPath: sceneCamera
       value: 
       objectReference: {fileID: 1494591893}
+    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
+        type: 2}
+      propertyPath: prizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
+        type: 2}
+      propertyPath: prizeAmount
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
   m_IsPrefabParent: 0
@@ -3048,6 +3059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throttleIdeal: 0.5
   steerAngleIdeal: 0
+  lazynessAutoThrottle: 0.5
   idealSteeringPointer: {fileID: 452326719}
   idealThrottleLevel: {fileID: 2130496173}
   shipStatusDooer: {fileID: 164423849}
