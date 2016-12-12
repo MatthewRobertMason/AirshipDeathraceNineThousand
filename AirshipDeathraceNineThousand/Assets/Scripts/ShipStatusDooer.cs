@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipStatusDooer : MonoBehaviour
 {
@@ -75,11 +76,14 @@ public class ShipStatusDooer : MonoBehaviour
 
 	private float altitude = 10.0f;
 
+    private AudioSource crashSfx;
+
     // Use this for initialization
     void Start ()
     {
         hookInitial = Hook.transform.position;
-	}
+        AudioSource sfx = this.gameObject.GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -107,8 +111,10 @@ public class ShipStatusDooer : MonoBehaviour
 		altitude += getVerticalSpeed() * Time.deltaTime;
 		altitude = Mathf.Clamp(altitude, 0, MaxAltitude());
 
-		if (altitude < 1) {
-			Debug.Log("CRASH");
+		if (altitude < 1)
+        {
+            crashSfx.Play();
+            SceneManager.LoadScene(1);
 		}
 
 
