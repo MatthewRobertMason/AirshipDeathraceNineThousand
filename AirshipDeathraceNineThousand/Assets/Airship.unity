@@ -389,7 +389,7 @@ MonoBehaviour:
   chainQuad: {fileID: 366161464}
   startVertex: {fileID: 1846670475}
   endVertex: {fileID: 261361937}
-  FUEL_USAGE: 0.1
+  FUEL_USAGE: 0.25
   STOKING_AMOUNT: 10
   FUEL_MAXIMUM: 50
   RESERVE_MAXIMUM: 500
@@ -402,7 +402,7 @@ MonoBehaviour:
   hookDeployed: 0
   hookReturned: 0
   currentFuelLevel: 20
-  stashedFuelLevel: 50
+  stashedFuelLevel: 5
   altitude: 10
 --- !u!1 &207765169
 GameObject:
