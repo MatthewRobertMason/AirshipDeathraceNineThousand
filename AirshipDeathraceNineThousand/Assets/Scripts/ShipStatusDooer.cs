@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShipStatusDooer : MonoBehaviour
 {
+	[Header("Score")]
+	public UnityEngine.UI.Text scoreForm;
+	protected float score = 0;
+
     [Header("People Action Decider")]
     public GameObject PeopleActionDecider;
 
@@ -136,6 +140,12 @@ public class ShipStatusDooer : MonoBehaviour
         }
 
         togWoggler.transform.localScale.Set((currentlyHooking) ? -1.0f : 1.0f, 1.0f, 1.0f);
+
+		// ====================
+		// Score things
+
+		score += Time.deltaTime * getCurrentThrottle() * GetAltitude();
+		scoreForm.text = string.Format("{0:D}", (int)score);
     }
 
     public void toggleHook()
