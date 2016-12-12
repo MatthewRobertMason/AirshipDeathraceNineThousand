@@ -403,6 +403,7 @@ MonoBehaviour:
   hookReturned: 0
   currentFuelLevel: 10
   stashedFuelLevel: 50
+  altitude: 10
 --- !u!1 &207765169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d7593e83675274db1c6ef8b6589a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollspeed: 0.0005
+  scrollspeed: 0.02
   shipStatusDooer: {fileID: 164423849}
   top: {fileID: 503435042}
   bottom: {fileID: 896789454}
@@ -2040,23 +2041,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8953c2dc1d8e7f4fa8986591b766cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  houseMinSpacing: 3
-  houseExpectedSpacing: 5
+  houseMinSpacing: 2
+  houseExpectedSpacing: 3
   houseAltitude: 1
   aHouse: {fileID: 1939782960357880, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-  cloudMinSpacing: 0
-  cloudExpectedSpacing: 1
+  cloudMinSpacing: 0.01
+  cloudExpectedSpacing: 0.5
   cloudMinAltitude: 4
   cloudMaxAltitude: 20
   aCloud1: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
   aCloud2: {fileID: 1580242664335460, guid: 851074afcbd91984799d033d822c4e79, type: 2}
   bigCloudMinSpacing: 1
-  bigCloudExpectedSpacing: 2.5
+  bigCloudExpectedSpacing: 2
   bigCloudMinAltitude: 16
   bigCloudMaxAltitude: 60
   aBigCloud: {fileID: 1977518430230596, guid: deb1b3e2a4d042f43a3ea8cfbbebe562, type: 2}
   villageMinSpacing: 2
-  villageExpectedSpacing: 3
+  villageExpectedSpacing: 2
   villageMinAltitude: 15
   villageMaxAltitude: 40
   aVillage: {fileID: 1158538071547576, guid: da4943b2fd2863244899ac0f0150446c, type: 2}

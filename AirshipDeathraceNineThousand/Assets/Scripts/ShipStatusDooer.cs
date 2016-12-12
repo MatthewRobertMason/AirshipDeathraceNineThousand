@@ -35,7 +35,7 @@ public class ShipStatusDooer : MonoBehaviour
 
     [Header("Constants")]
     [SerializeField]
-    private float FUEL_USAGE = 0.05f;
+    private float FUEL_USAGE = 1f;
     [SerializeField]
     private float STOKING_AMOUNT = 10.0f;
     [SerializeField]
@@ -43,7 +43,7 @@ public class ShipStatusDooer : MonoBehaviour
     [SerializeField]
     private float RESERVE_MAXIMUM = 500.0f;
     [SerializeField]
-    private float THROTTLE_USAGE = 0.0005f;
+    private float THROTTLE_USAGE = 0.1f;
     [SerializeField]
     private float THROTTLE_AMOUNT = 0.05f;
 
@@ -73,7 +73,7 @@ public class ShipStatusDooer : MonoBehaviour
 	private float stashedFuelLevel = 50.0f;
 
 
-	private float altitude = 10.0f;
+	public float altitude = 10.0f;
 
     // Use this for initialization
     void Start ()
@@ -84,8 +84,8 @@ public class ShipStatusDooer : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        currentThrottle -= THROTTLE_USAGE;
-        currentFuelLevel -= FUEL_USAGE;
+		currentThrottle -= THROTTLE_USAGE * Time.deltaTime;
+		currentFuelLevel -= FUEL_USAGE * Time.deltaTime;
 
 		if (currentThrottle <= 0.0f)
 			currentThrottle = 0.0f;

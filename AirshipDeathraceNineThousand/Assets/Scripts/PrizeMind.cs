@@ -34,7 +34,7 @@ public class PrizeMind : MonoBehaviour {
 	void Update () {
 		if (!hooked) {
 			Vector3 pos = transform.position;
-			pos += new Vector3 (-ship.getCurrentThrottle () * speedMultiplier, 0, 0);
+			pos += new Vector3 (-ship.getCurrentThrottle () * speedMultiplier * Time.deltaTime, 0, 0);
 			pos.y = getViewHeight ();
 
 			transform.position = pos;
