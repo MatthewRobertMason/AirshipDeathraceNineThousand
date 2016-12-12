@@ -227,11 +227,14 @@ public class ShipStatusDooer : MonoBehaviour
 
 	public float getVerticalSpeed(){
 		float furnaceEffect = (currentFuelLevel / FUEL_MAXIMUM - 0.05f);
+		// How fast should you drop when you run out of fuel
 		if (furnaceEffect < 0)
 			furnaceEffect *= 25;
+		// How fast do you rise when your fire is large
 		else
 			furnaceEffect *= 0.15f;
 
+		// How much does extra fuel drag you down.
 		float reserveEffect = (stashedFuelLevel / RESERVE_MAXIMUM) * 0.08f;
 
 		return Mathf.Sin(currentSteeringAngle * Mathf.Deg2Rad) * getCurrentThrottle()  + furnaceEffect - reserveEffect;
