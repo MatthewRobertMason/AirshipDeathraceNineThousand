@@ -400,7 +400,6 @@ MonoBehaviour:
   currentlyStoking: 0
   currentlyHooking: 0
   hookDeployed: 0
-  hookReturned: 0
   currentFuelLevel: 10
   stashedFuelLevel: 50
 --- !u!1 &207765169
@@ -2013,68 +2012,52 @@ Transform:
   m_Father: {fileID: 381350884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1107159045
-Prefab:
+--- !u!1 &1137277153
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.89961535
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.6961731
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710654424413866, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
-        type: 2}
-      propertyPath: shipStatusDooer
-      value: 
-      objectReference: {fileID: 164423849}
-    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
-        type: 2}
-      propertyPath: sceneCamera
-      value: 
-      objectReference: {fileID: 1494591893}
-    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
-        type: 2}
-      propertyPath: prizeType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114652764335059452, guid: 6560b4ec281ec034cb322517a0e13208,
-        type: 2}
-      propertyPath: prizeAmount
-      value: 500
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1137277155}
+  - component: {fileID: 1137277154}
+  m_Layer: 0
+  m_Name: GarbageFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1137277154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1137277153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8953c2dc1d8e7f4fa8986591b766cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  houseMinSpacing: 3
+  houseExpectedSpacing: 5
+  houseAltitude: 1
+  aHouse: {fileID: 1939782960357880, guid: 6560b4ec281ec034cb322517a0e13208, type: 2}
+  sceneCamera: {fileID: 1494591893}
+  shipStatusDooer: {fileID: 164423849}
+--- !u!4 &1137277155
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1137277153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6077098, y: -0.9337912, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190715413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2088,7 @@ Transform:
   - {fileID: 636900405}
   - {fileID: 278139429}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267383924
 GameObject:
@@ -3059,7 +3042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throttleIdeal: 0.5
   steerAngleIdeal: 0
-  lazynessAutoThrottle: 0.5
   idealSteeringPointer: {fileID: 452326719}
   idealThrottleLevel: {fileID: 2130496173}
   shipStatusDooer: {fileID: 164423849}
